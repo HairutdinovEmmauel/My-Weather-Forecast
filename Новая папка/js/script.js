@@ -1,12 +1,75 @@
 window.onload = function () {
 
+	var options = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0
+	  };
+	  
+	function success(position, lat, lng) {
+		this.lat = position.coords.latitude;
+		this.lng = position.coords.longitude;
+	};
+	  
+	function error(err) {
+		console.warn(`ERROR(${err.code}): ${err.message}`);
+	};
+	  
+	navigator.geolocation.getCurrentPosition(success, error, options);
 
-	navigator.geolocation.getCurrentPosition(
-		function () {
-			alert('Последний раз вас засекали здесь: ' +
-				position.coords.latitude + ", " + position.coords.longitude );
-		}
-	);
+	function initMap() {
+		var map = new google.maps.Map(document.getElementById('map'), 
+		center{lat: success.lat, lng: success.lng };
+		zoom: 12
+			// center: {lat: crd.longitude, lng},
+			// zoom: 12
+		
+	});
+
+	
+	// 	var map = new google.maps.Map(document.getElementById('map'), {
+	// 		center: {lat: 47.900, lng: 36.320},
+	// 		zoom: 12
+	// 	});
+	// };
+
+	// options = {
+	// 	lat: position.coords.latitude,
+	// 	lng: position.coords.longitude
+	// }
+
+	// navigator.geolocation.getCurrentPosition(
+	// 	function initMap() {
+	// 	var map = new google.maps.Map(document.getElementById('map'), {
+	// 		center: {lat: options[0], lng: options[1]},
+	// 		zoom: 12
+	// 	});
+	// }); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  	//------------------------------------------------- НАЧАЛО -----------------------------------------------------
 	/*
 		JavaScript позволяет реализовать поставленную задачу посредством использования Geolocation API. В вашем 
