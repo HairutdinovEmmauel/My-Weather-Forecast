@@ -1,14 +1,42 @@
 window.onload = function () {
-
+	document.write("<h1>Hello</h1>")
 	var options = {
 		enableHighAccuracy: true,
 		timeout: 5000,
 		maximumAge: 0
 	  };
 	  
-	function success(position, lat, lng) {
-		this.lat = position.coords.latitude;
-		this.lng = position.coords.longitude;
+	  function success(pos) {
+		var crd = pos.coords;
+	  
+		console.log('Your current position is:');
+		console.log(`Latitude : ${crd.latitude}`);
+		console.log(`Longitude: ${crd.longitude}`);
+		console.log(`More or less ${crd.accuracy} meters.`);
+	  };
+	  
+	  function error(err) {
+		console.warn(`ERROR(${err.code}): ${err.message}`);
+	  };
+	  
+	  navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+
+
+
+	/*var options = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0
+	  };
+
+	  var lat = position.coords.latitude;
+	  var lng = position.coords.longitude;
+	  
+	function success(position) {
+		var lati = lat;
+		var long = lng;
 	};
 	  
 	function error(err) {
@@ -17,14 +45,13 @@ window.onload = function () {
 	  
 	navigator.geolocation.getCurrentPosition(success, error, options);
 
+	object = {
+		center: {lat: lat, lng: lng},
+		zoom: 8
+	}
+
 	function initMap() {
-		var map = new google.maps.Map(document.getElementById('map'), 
-		center{lat: success.lat, lng: success.lng };
-		zoom: 12
-			// center: {lat: crd.longitude, lng},
-			// zoom: 12
-		
-	});
+		var map = new google.maps.Map(document.getElementById('map'), object)};
 
 	
 	// 	var map = new google.maps.Map(document.getElementById('map'), {

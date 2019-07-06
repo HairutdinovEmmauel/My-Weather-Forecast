@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js"></script>
+    <!-- <script src="js/script.js"></script> -->
     <!-- Замените значение параметра key вашим собственным ключом API. -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhJGugb9yhLKg9XK0YgZSEdtvl_BN1be4&callback=initMap" async defer></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhJGugb9yhLKg9XK0YgZSEdtvl_BN1be4&callback=initMap" async defer></script> -->
 </head>
 <body>
 
@@ -54,22 +54,64 @@
         //             center: {lat: 47.900, lng: 36.320},
         //             zoom: 12
         //         });
-        //     };
+        //     };*/
 
-        //     options = {
-        //         lat: position.coords.latitude,
-        //         lng: position.coords.longitude
-        //     }
+            navigator.geolocation.getCurrentPosition(
+                // Функция обратного вызова при успешном извлечении локации
+                function (position) {
+                    position = {
+                        coords: {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        }
+                    }
+                    // Создание своей Функции
+                    var x = document.querySelector('.text');
+                    console.log( "Последний раз вас нашли" + '\n' + position.coords.lat + '\n' +  position.coords.lng);
+             
+                    
+                    /*
+                    В объекте position изложена подробная информация
+                    о позиции устройства:
 
-        //     navigator.geolocation.getCurrentPosition(
-        //         function initMap() {
-        //         var map = new google.maps.Map(document.getElementById('map'), {
-        //             center: {lat: options[0], lng: options[1]},
-        //             zoom: 12
-        //         });
-        //     }); */
-       
-       };  
+                    position = {
+                        coords: {
+                            latitude - Широта.
+                            longitude - Долгота.
+                            altitude - Высота в метрах над уровнем моря.
+                            accuracy - Погрешность в метрах.
+                            altitudeAccuracy - Погрешность высоты над уровнем моря в метрах.
+                            heading - Направление устройства по отношению к северу.
+                            speed - Скорость в метрах в секунду.
+                        }
+                        timestamp - Время извлечения информации.
+                    }
+                    */
+
+                },
+
+                // Функция обратного вызова при неуспешном извлечении локации
+                function(error){
+                    error = {
+                        code: 'Доступ к месту положения не доступен',
+                        message: 'Вы не разрешили доступ к месту вашего нахождения'
+                    }
+                    console.log(error.code + '\n' + error.message);
+                    /*
+                    При неудаче, будет доступен объект error:
+
+                    error = {
+                        code - Тип ошибки
+                                1 - PERMISSION_DENIED
+                                2 - POSITION_UNAVAILABLE
+                                3 - TIMEOUT
+
+                        message - Детальная информация.
+                    }
+                    */
+
+                }
+            )};      
     </script>   
 </body>
 </html>
