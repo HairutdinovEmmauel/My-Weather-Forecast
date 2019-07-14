@@ -1,117 +1,30 @@
-
-<html lang="en">
+<!doctype html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- <script src="js/script.js"></script> -->
+    <script src="js/script.js"></script>
     <!-- Замените значение параметра key вашим собственным ключом API. -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhJGugb9yhLKg9XK0YgZSEdtvl_BN1be4&callback=initMap" async defer></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhJGugb9yhLKg9XK0YgZSEdtvl_BN1be4&callback=initMap" async defer></script>
 </head>
 <body>
-
-
-    
     <main class="main">
         <div class="conteiner">
             <div class="location-map" id="map"></div>
             <div class="atricle">
                 <p class="text">
-                   Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Языкового там снова путь, одна о семь решила выйти дорогу большой до заманивший родного буквенных пунктуация продолжил толку пор свое!
+                   Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Языкового 
+                   там снова путь, одна о семь решила выйти дорогу большой до заманивший родного буквенных 
+                   пунктуация продолжил толку пор свое!
                 </p>
-                <button class="location" id="Geolocation">Узнать Прогноз погоды</button>
+                <p class="conteiner-location">
+                    <button class="location" id="Geolocation">Узнать Прогноз погоды</button>
+                </p>
             </div>
         </div>
-    </main>
-    <script>
-        
-        window.onload = function () {
-            // var options = {
-            //     enableHighAccuracy: true,
-            //     timeout: 5000,
-            //     maximumAge: 0
-            //   };
-              
-            //   function success(pos) {
-            //     var crd = pos.coords;
-              
-            //     console.log('Your current position is:');
-            //     console.log(`Latitude : ${crd.latitude}`);
-            //     console.log(`Longitude: ${crd.longitude}`);
-            //     console.log(`More or less ${crd.accuracy} meters.`);
-            //   };
-              
-            //   function error(err) {
-            //     console.warn(`ERROR(${err.code}): ${err.message}`);
-            //   };
-              
-            //   navigator.geolocation.getCurrentPosition(success, error, options);
-        /*
-        //     function initMap() {
-        //         var map = new google.maps.Map(document.getElementById('map'), {
-        //             center: {lat: 47.900, lng: 36.320},
-        //             zoom: 12
-        //         });
-        //     };*/
-
-            navigator.geolocation.getCurrentPosition(
-                // Функция обратного вызова при успешном извлечении локации
-                function (position) {
-                    position = {
-                        coords: {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        }
-                    }
-                    // Создание своей Функции
-                    var x = document.querySelector('.text');
-                    console.log( "Последний раз вас нашли" + '\n' + position.coords.lat + '\n' +  position.coords.lng);
-             
-                    
-                    /*
-                    В объекте position изложена подробная информация
-                    о позиции устройства:
-
-                    position = {
-                        coords: {
-                            latitude - Широта.
-                            longitude - Долгота.
-                            altitude - Высота в метрах над уровнем моря.
-                            accuracy - Погрешность в метрах.
-                            altitudeAccuracy - Погрешность высоты над уровнем моря в метрах.
-                            heading - Направление устройства по отношению к северу.
-                            speed - Скорость в метрах в секунду.
-                        }
-                        timestamp - Время извлечения информации.
-                    }
-                    */
-
-                },
-
-                // Функция обратного вызова при неуспешном извлечении локации
-                function(error){
-                    error = {
-                        code: 'Доступ к месту положения не доступен',
-                        message: 'Вы не разрешили доступ к месту вашего нахождения'
-                    }
-                    console.log(error.code + '\n' + error.message);
-                    /*
-                    При неудаче, будет доступен объект error:
-
-                    error = {
-                        code - Тип ошибки
-                                1 - PERMISSION_DENIED
-                                2 - POSITION_UNAVAILABLE
-                                3 - TIMEOUT
-
-                        message - Детальная информация.
-                    }
-                    */
-
-                }
-            )};      
-    </script>   
+    </main> 
 </body>
 </html>
