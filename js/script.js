@@ -1,4 +1,19 @@
 window.onload = function () {
+	var h2 = document.createElement('h2');
+	var textH2 = document.createTextNode('Добро пожаловать');
+
+	h2.appendChild(textH2);
+	document.querySelector('.text').appendChild(h2);
+
+	var tegP = document.createElement('p');
+	var textTegP = document.createTextNode('Если вы хотите узнать прогноз погоды нажмите на кнопку "Узнать Прогноз погоды". Потом разрешите узнать место вашего разположения.');
+	
+	tegP.appendChild(textTegP);
+	document.querySelector('.text').appendChild(tegP);
+
+
+
+
 	var button = document.getElementById('Geolocation');
 	iMap();
 
