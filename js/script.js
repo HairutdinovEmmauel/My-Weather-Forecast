@@ -25,11 +25,12 @@ window.onload = function () {
 	};
 
 	button.addEventListener('click', weatherForecast);
+
 	function weatherForecast () {
 
 		navigator.geolocation.getCurrentPosition(
-			// Функция обратного вызова при успешном извлечении локации
 			function (position) {
+
 				position = {
 					coords: {
 						lat: position.coords.latitude,
@@ -37,7 +38,6 @@ window.onload = function () {
 					}
 				}
 
-				// Создание своей Функции
 				console.log( "Последний раз вас нашли" + '\n' + position.coords.lat + '\n' +  position.coords.lng);
 					map();
 
@@ -49,14 +49,10 @@ window.onload = function () {
 						
 					};
 
-				// 1. Создаём новый объект XMLHttpRequest
 				var xhr = new XMLHttpRequest();
 				var URL = 'https://api.openweathermap.org/data/2.5/weather?lat=' + String(position.coords.lat) + '&'  + 'lon=' + String(position.coords.lng) + '&APPID=3f8430d4d06ce3e26656fc62b981aaf0';
-				// 2. Конфигурируем его: GET-запрос на URL 'phones.json'
 				xhr.open('GET', URL, true);
-				// Эта конфигуратция не успешная по причине ошибки сервера xhr.open('GET', 'https://api.darksky.net/forecast/97c7f099b8b85f8d0eca0dcf50ec81fd/' + String(position.coords.lat) + ',' + String(position.coords.lng), true);
-
-				// 3. Отсылаем запрос 
+				
 				xhr.send(); 
 
 				
@@ -66,11 +62,10 @@ window.onload = function () {
 					if (xhr.readyState !== 4) {
 						return
 					}
-					console.log('end'); // Оброботка обьекта завершена
+					console.log('end');
 					
 					if (xhr.status === 200) {
-						// вывести результат
-						// console.log('result', JSON.parse( xhr.responseText )); // responseText -- текст ответа.
+			
 						var GetWeath = JSON.parse( xhr.responseText );
 						Result();
 						
@@ -125,56 +120,21 @@ window.onload = function () {
 							Pressure.appendChild(PressureInfo)
 						}                                                                                                                                                           
 						
-						// иконка для погоды 02d.png
 					} else {
-						// обработать ошибку
 						console.log('error', xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
 					}
 					
 				};
 
-				/*
-				В объекте position изложена подробная информация
-				о позиции устройства:
-
-				position = {
-					coords: {
-						latitude - Широта.
-						longitude - Долгота.
-						altitude - Высота в метрах над уровнем моря.
-						accuracy - Погрешность в метрах.
-						altitudeAccuracy - Погрешность высоты над уровнем моря в метрах.
-						heading - Направление устройства по отношению к северу.
-						speed - Скорость в метрах в секунду.
-					}
-					timestamp - Время извлечения информации.
-				}
-				*/
+			
 			},
 
-			// Функция обратного вызова при неуспешном извлечении локации
 			function(error){
 				error = {
 					code: 'Доступ к месту положения не доступен.',
 					message: 'Вы не разрешили доступ к вашему месту расположения.'
 				}
 				document.querySelector('.text').innerHTML = error.code + '<br>' + error.message;
-
-				
-			/*    
-			
-				При неудаче, будет доступен объект error:
-
-				error = {
-					code - Тип ошибки
-							1 - PERMISSION_DENIED
-							2 - POSITION_UNAVAILABLE
-							3 - TIMEOUT
-
-					message - Детальная информация.
-				}
-				
-			*/
 
 			}
 
